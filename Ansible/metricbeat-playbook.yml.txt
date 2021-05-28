@@ -1,0 +1,31 @@
+---
+- name: Install and launching metricbeat on WebVM
+  hosts: webservers
+  become: yes
+  tasks:
+      # download metricbeat deb
+  - name: Download metricbeat.deb file
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb
+      # install metricbeat
+  - name: install metricbeat.deb file
+    command: dpkg -i metricbeat-7.6.1-amd64.deb
+      # copy the metribeat-config.yml to webservers
+  - name: drop in metricbeat.yml
+    copy:
+      src: /etc/ansible/metrics/metricbeat-config.yml
+      dest: /etc/metricbeat/metricbeat.yml
+      # Enabling and cofiguring system module
+  - name: enable and configure docker module
+    command: metricbeat modules enable docker
+      # setup the filebeat
+  - name: setup filebeat
+    command: metricbeat setup
+      # run the filebeat
+  - name: start metricbeat
+    command: service metricbeat start
+      # start the service
+  - name: enable service filebeat on boot
+    systemd:
+      name: metricbeat
+      enabled: yes
+
