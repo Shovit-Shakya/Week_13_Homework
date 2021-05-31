@@ -109,10 +109,15 @@ In order to use the playbook, you will need to have an Ansible control node alre
 SSH into the control node and follow the steps below:
 - Copy the filebeat.cfg file to /etc/ansible/filebeat-config.yml.
 - Update the filebeat-config.yml file to include
-https://github.com/Shovit-Shakya/Week_13_Homework/blob/main/Ansible/ansible_config.txt
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- https://github.com/Shovit-Shakya/Week_13_Homework/blob/main/Ansible/filebeat-playbook.yml
+- Run the playbook, and navigate to check the installation
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
+Answer the following questions to fill in the blanks:
+- Which file is the playbook? Where do you copy it?
+  * filebeat-playbook.yml is copied to /etc/filebeat/filebeat.yml 
+- Which file do you update to make Ansible run the playbook on a specific machine?
+- https://github.com/Shovit-Shakya/Week_13_Homework/blob/main/Ansible/hosts.txt
+- How do I specify which machine to install the ELK server on versus which to install Filebeat on?
+- edit the /etc/ansible/host file to add webserver/elkserver ip addresses
+- Which URL do you navigate to in order to check that the ELK server is running?
+-    www.publicip:5601 (Kibana) [20.36.46.94:5601]
